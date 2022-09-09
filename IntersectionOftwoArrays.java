@@ -69,3 +69,28 @@ class Solution {
         return false;
     }
 }
+
+// Approach 3: Sets
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> Set = new HashSet<>();
+HashSet<Integer> Set2 = new HashSet<>();
+
+for (int e:nums1){
+    Set.add(e);
+}
+for (int e:nums2){
+    if (Set.contains(e) ) {
+        Set2.add(e);
+    }
+}
+
+int[]arr = new int[Set2.size()];
+ int c = 0;
+for (int e :Set2){
+  arr[c++] =  e ;
+}
+return arr;
+    }
+}
