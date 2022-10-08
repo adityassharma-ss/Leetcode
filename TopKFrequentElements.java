@@ -50,3 +50,32 @@ class Solution {
         
     }
 }
+
+// Approach 3: Using Heap & Priority Queue
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        Arrays.sort(nums); 
+        PriorityQueue<int[]> heap = new PriorityQueue<int[]>(nums.length, new Comparator<int[]>(){
+            @Override
+            public int compare(int[] a, int[] b){
+                return a[1]>b[1]?-1:(a[1] == b[1]?0:1);
+            }
+        });
+        int count = 1;
+        for (int i = 0; i < nums.length - 1; i++){
+            if (nums[i] == nums[i+1]){
+                count++;
+            } else {
+                heap.add(new int[]{nums[i], count});
+                count = 1;
+            }
+        }
+        heap.add(new int[]{nums[nums.length - 1], count});
+        int[] sol = new int[k];
+        for (int i = 0; i< k; i++){
+            sol[i] = heap.poll()[0];
+        }
+        return sol;
+    }
+}
