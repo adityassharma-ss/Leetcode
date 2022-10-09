@@ -29,3 +29,28 @@ class Solution {
         return find(root.left, k, set) || find(root.right, k, set);
     }
 }
+
+//Approach 2: Inorder traversal
+
+class Solution {
+	List<Integer> list = new ArrayList<>();
+	public boolean findTarget(TreeNode root, int k) {
+		helper(root);
+		int s = 0, e=list.size()-1;
+
+		while(e>s){
+			if(list.get(s)+list.get(e)==k) return true;
+			else if(list.get(s)+list.get(e)>k) e--;
+			else s++;
+		}
+		return false;
+	}
+
+	void helper(TreeNode root){
+		if(root==null) return;
+
+		helper(root.left);
+		list.add(root.val);
+		helper(root.right);
+	}
+}
