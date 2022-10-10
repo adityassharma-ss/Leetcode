@@ -53,3 +53,16 @@ class Solution {
     }
 
 }
+
+
+// Approach 2:
+
+class Solution{
+    public ListNode swapPairs(ListNode head) {
+    if(head == null || head.next == null) return head;
+    final ListNode st = head, scnd = head.next, thrd = head.next.next;// first, second and third node
+    scnd.next = st;
+    st.next = swapPairs(thrd);
+    return scnd;
+}
+}
