@@ -45,3 +45,31 @@ class Solution {
     return prev;
   }
 }
+
+
+// Approach 2: Using Two Pointers Using Stacks
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) return true;
+
+        ListNode slow = head;
+        ListNode fast = head;
+        Stack<Integer> stack = new Stack<>();
+
+        while (fast != null && fast.next != null) {
+            stack.push(slow.val);
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (fast == null || fast.next == null) {
+                if (fast != null) slow = slow.next;
+                while (slow != null) {
+                    if (stack.empty() || stack.pop() != slow.val) return false;
+                    slow = slow.next;
+                }
+            }
+        }
+        return true;
+    }
+}
