@@ -11,3 +11,23 @@ class Solution {
         return dp[n];
     }
 }
+
+
+
+class Solution {
+    
+    public int numTrees(int n) {
+        return solution(n);
+    }
+    int solution(int n)
+    {
+        if(n <= 1)
+            return 1;
+        int res = 0;
+        for(int i=0;i<=n-1;i++)
+        {
+            res += (solution(i) * solution(n-i-1));
+        }
+        return res;
+    }
+}
