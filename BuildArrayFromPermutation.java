@@ -13,6 +13,7 @@ class Solution {
     }
 }
 
+
 //Approach 2: Optimised
 class Solution {
   public int[] buildArray(int[] nums) {
